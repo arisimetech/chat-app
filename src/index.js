@@ -11,6 +11,10 @@ const io = socketio(server)
 const port = process.env.PORT || 3000
 const publicDirectoryPath = path.join(__dirname, '../public')
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(publicDirectoryPath, 'index.html'))
+})
+
 app.use(express.static(publicDirectoryPath))
 
 io.on('connection', (socket) => {
